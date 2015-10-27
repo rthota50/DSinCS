@@ -56,7 +56,7 @@ public class ReachLastElement
 			Res[i] = int.MaxValue; //[2]-> max
 			for(int j=0; j<i; j++)
 			{
-				if(i <= j+a[j])
+				if(i <= j+a[j] && Res[j] != int.MaxValue)
 				{
 					Res[i] = Math.Min(Res[i], Res[j]+1); // int_max vs 1
 					break;	
