@@ -42,8 +42,17 @@ public class ReachLastElement
 	
 	#region dynamic programming
 	/*From left find the min jumps required to reach a postion p
+<<<<<<< HEAD
 			2  3  1  1  4
 		------------------
+=======
+		2  3  1  1  4
+	jumps:	0  1  1  2  3
+		      2  2  2
+			 2  3
+      			    3
+	    ------------------
+>>>>>>> ab720425bb94e3faba738b315c85d29ce7d6d620
 	Min  -> 0  1  1  2  2 <- Ans @ Res[n-1] where n is size of array
 	*/
 	public int OptimalJumps_DP1(int[] a)
