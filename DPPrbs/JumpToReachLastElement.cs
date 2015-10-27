@@ -43,10 +43,6 @@ public class ReachLastElement
 	#region dynamic programming
 	/*From left find the min jumps required to reach a postion p
 			2  3  1  1  4
-	jumps:	0  1  1  2  3
-		     	  2  2  2
-				     2  3
-						3
 		------------------
 	Min  -> 0  1  1  2  2 <- Ans @ Res[n-1] where n is size of array
 	*/
@@ -60,21 +56,11 @@ public class ReachLastElement
 			Res[i] = int.MaxValue; //[2]-> max
 			for(int j=0; j<i; j++)
 			{
-				int jumps = Res[j]; //0
-				for(int k=j; k<=i;)
+				if(i <= j+a[j])
 				{
-					if(a[k] >= (i-k)) // 2 >= 2
-					{
-						jumps++; //1
-						break;
-					}
-					else
-					{
-						k += a[k];
-						jumps++;
-					}
-				}
-				Res[i] = Math.Min(jumps, Res[i]); // int_max vs 1							
+					Res[i] = Math.Min(Res[i], Res[j]+1); // int_max vs 1
+					break;	
+				}						
 			}
 		}
 		return Res[n-1];
@@ -95,7 +81,9 @@ public class ReachLastElement
 		Console.WriteLine(res_dp1);
 		var res_dp1_2 = prbs.OptimalJumps_DP1(b);
 		Console.WriteLine(res_dp1_2);
-		
+		var c = new int[]{1, 3, 6, 1, 0, 9};
+		var res_dp1_3 = prbs.OptimalJumps(c);
+		Console.WriteLine(res_dp1_3);
 			
 	}
 }
