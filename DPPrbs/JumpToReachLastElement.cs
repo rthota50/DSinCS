@@ -43,7 +43,7 @@ public class ReachLastElement
 	
 	#region dynamic programming
 	/*From left find the min jumps required to reach a postion p
-			2  3  1  1  4
+		2  3  1  1  4
 	    ------------------
 	Min  -> 0  1  1  2  2 <- Ans @ Res[n-1] where n is size of array
 	*/
@@ -80,7 +80,7 @@ public class ReachLastElement
 	/*
 	Solving from right to left. Find min steps to reach end from from any position
 	O(n*n) in worst case
-			2 3 1 1 4
+		2 3 1 1 4
 	min:	2 1 2 1 0
 	Soln: inspired from geekforgeeks.org
 	*/
