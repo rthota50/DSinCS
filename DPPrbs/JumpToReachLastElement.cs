@@ -66,6 +66,41 @@ public class ReachLastElement
 		return Res[n-1];
 	}
 	
+	/*
+	Solving from right to left. Find min steps to reach end from from any position
+	O(n*n) in worst case
+			2 3 1 1 4
+	min:	2 1 2 1 0
+	Soln: inspired from geekforgeeks.org
+	*/
+	public int MinJumps_DP2(int[] a)
+	{
+		int n = a.Length;
+		var jumps = new int[n];
+		int i=n-1;
+		jumps[i] = 0; //last element
+		for( i--; i>=0; i--)
+		{
+			
+			if(a[i]==0) 
+				jumps[i] = int.MaxValue;
+			else if(a[i]>=n-i-1) 
+				jumps[i] = 1;
+			else 
+			{
+				int min = int.MaxValue;
+				for(int j=i+1; j<n && j <= a[i]+i; j++)
+				{
+					if(jumps[j]<min-1) //or jumps[j]+1<min which could result in max_int overflow
+						min = jumps[j]+1;
+				}
+				jumps[i] = min;
+			}
+		}
+		return jumps[0];
+	}
+	
+	
 	#endregion
 	public static void Test()
 	{
@@ -84,6 +119,13 @@ public class ReachLastElement
 		var c = new int[]{1, 3, 6, 1, 0, 9};
 		var res_dp1_3 = prbs.OptimalJumps(c);
 		Console.WriteLine(res_dp1_3);
+		
+		var res_dp2 = prbs.MinJumps_DP2(a);
+		Console.WriteLine(res_dp2);
+		var res_dp2_2 = prbs.MinJumps_DP2(b);
+		Console.WriteLine(res_dp2_2);		
+		var res_dp2_3 = prbs.MinJumps_DP2(c);
+		Console.WriteLine(res_dp2_3);
 			
 	}
 }
