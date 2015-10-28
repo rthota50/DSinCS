@@ -42,9 +42,35 @@ public class MaxSumSubMatrix
 	#region Dynamic programming
 	public int MaxSum_DP(int[,] m)
 	{
-		int sum = int.MinValue;
+		int maxSum = int.MinValue;
+		int col = m.GetLength(1);
+		int row = m.GetLength(0);
+		var temp = new int[row];
+		int left, right, top, bottom;
 		
-		return sum;
+		for(int L=0; L<col; L++)
+		{
+			for(int R=L; R<col; R++)
+			{
+				for(int i=0; i<temp.Length; i++)
+				{
+					if(R==L)
+						temp[i] = m[i,R];
+					else
+						temp[i] += m[i,R];
+				}
+				int sum, start, end;
+				MaxContiguousSubArray(temp, out sum, out start, out end);
+				if(sum > maxSum)
+				{
+					maxSum = sum;
+					left = L; right = R;
+					top = start; bottom = end;
+				}
+			}
+		}
+		
+		return maxSum;
 	}
 	//Kadane's algo to find max sub-array
 	public void MaxContiguousSubArray(int[] t, out int sum, out int start, out int end)
@@ -87,5 +113,7 @@ public class MaxSumSubMatrix
 		int sum, st, ed;
 		prb.MaxContiguousSubArray(t, out sum, out st, out ed);
 		Console.WriteLine("Sum "+sum+" st "+st+" ed "+ed);
+		
+		Console.WriteLine("Max sum DP : {0}",prb.MaxSum_DP(m));
 	}
 }
