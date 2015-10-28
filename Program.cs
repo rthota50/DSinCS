@@ -6,7 +6,8 @@ namespace DSinCS
     {
         public static void Main(string[] args)
         {
-            ReachLastElement.Test();
+            //ReachLastElement.Test();
+            MaxSumSubMatrix.Test();
         }
     }
 }
