@@ -1,5 +1,3 @@
-using System;
-
 namespace DSinCS
 {
     public class Program
@@ -7,7 +5,8 @@ namespace DSinCS
         public static void Main(string[] args)
         {
             //ReachLastElement.Test();
-            MaxSumSubMatrix.Test();
+            //MaxSumSubMatrix.Test();
+            MaxSqurareInMatrix.Test();
         }
     }
 }
