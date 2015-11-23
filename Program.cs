@@ -4,9 +4,17 @@ namespace DSinCS
     {
         public static void Main(string[] args)
         {
+            #region Dynamic programming problems
             //ReachLastElement.Test();
             //MaxSumSubMatrix.Test();
-            MaxSqurareInMatrix.Test();
+            //MaxSqurareInMatrix.Test();
+            #endregion
+            
+            #region Array problems
+            //MaxElemDiff.Test();
+            MaxStockProfit.Test();
+            #endregion
+            
         }
     }
 }
