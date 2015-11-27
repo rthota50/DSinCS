@@ -17,6 +17,7 @@ public class MaxStockProfit
 		}
 		return profit;
 	}
+	//solve the same using dynamic programming
 	
 	//find the buying and selling dates
 	public static void Test()

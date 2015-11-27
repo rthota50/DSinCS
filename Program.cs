@@ -8,11 +8,12 @@ namespace DSinCS
             //ReachLastElement.Test();
             //MaxSumSubMatrix.Test();
             //MaxSqurareInMatrix.Test();
+            LongestCommonSubsequence.Test();
             #endregion
             
             #region Array problems
             //MaxElemDiff.Test();
-            MaxStockProfit.Test();
+            //MaxStockProfit.Test();
             #endregion
             
         }
