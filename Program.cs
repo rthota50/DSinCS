@@ -8,7 +8,8 @@ namespace DSinCS
             //ReachLastElement.Test();
             //MaxSumSubMatrix.Test();
             //MaxSqurareInMatrix.Test();
-            LongestCommonSubsequence.Test();
+            //LongestCommonSubsequence.Test();
+            //IncreasingSubSequence.Test();
             #endregion
             
             #region Array problems
@@ -16,6 +17,12 @@ namespace DSinCS
             //MaxStockProfit.Test();
             #endregion
             
+            #region Queue datastructure problems
+            TruckGas.Test();
+            #endregion
+            #region Miscelaneous
+            //NumberSpell.Test();
+            #endregion;
         }
     }
 }
