@@ -1,6 +1,6 @@
 namespace DSinCS
 {
-    public class Program
+    class Program
     {
         public static void Main(string[] args)
         {
@@ -18,11 +18,14 @@ namespace DSinCS
             #endregion
             
             #region Queue datastructure problems
-            TruckGas.Test();
+            //TruckGas.Test();
             #endregion
             #region Miscelaneous
             //NumberSpell.Test();
             #endregion;
+            #region Graphs
+            Graphs.UGraph<int>.Test1();
+            #endregion
         }
     }
 }

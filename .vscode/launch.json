@@ -1,22 +1,23 @@
 {
-	"version": "0.2.0",
-	"configurations": [
-		{
-			"name": "Launch",
-			"type": "mono",
-			"request": "launch",
-			"program": "program.exe",
-			"args": [],
-			"cwd": ".",
-			"runtimeExecutable": null,
-			"env": {}
-		},
-		{
-			"name": "Attach",
-			"type": "mono",
-			"request": "attach",
-			"address": "localhost",
-			"port": 5858
-		}
-	]
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Launch (console)",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build",
+            "program": "${workspaceRoot}/bin/Debug/netcoreapp1.0/dsincs.dll",
+            "args": [],
+            "cwd": "${workspaceRoot}",
+            "externalConsole": false,
+            "stopAtEntry": false,
+            "internalConsoleOptions": "openOnSessionStart"
+        },
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command.pickProcess}"
+        }
+    ]
 }

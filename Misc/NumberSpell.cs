@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 public class NumberSpell
 {
 	private List<string> nums, plural, teen, decs;
@@ -29,7 +30,7 @@ public class NumberSpell
 	}
 	private string PrintThreeNums(int num)
 	{
-		var numChar = Array.ConvertAll(num.ToString().ToCharArray(), (x) => Convert.ToInt32(x));
+		//var numChar = Array.ConvertAll(num.ToString().ToCharArray(), (x) => Convert.ToInt32(x));
 		string res = string.Empty;
 		int prev = -1;
 		int pos = 0;

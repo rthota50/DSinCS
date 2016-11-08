@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 public class TruckGas
 {
 	public int FindStart(int[] gas, int[] dist)
@@ -22,7 +23,7 @@ public class TruckGas
 	}
 	public static void Test()
 	{
-		using(var file = new System.IO.StreamReader(@"/Users/rajivthota/dev/DSinCS/Queue/truck_input.txt"))
+		using(var file = File.OpenText(@"/Users/rajivthota/dev/DSinCS/Queue/truck_input.txt"))
 		{
 			var T = int.Parse(file.ReadLine());
 			var gas = new int[T];
