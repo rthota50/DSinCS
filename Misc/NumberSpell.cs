@@ -1,6 +1,5 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
 public class NumberSpell
 {
 	private List<string> nums, plural, teen, decs;

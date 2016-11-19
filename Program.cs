@@ -24,7 +24,8 @@ namespace DSinCS
             //NumberSpell.Test();
             #endregion;
             #region Graphs
-            Graphs.UGraph<int>.Test1();
+            //Graphs.UGraph<int>.Test1();
+            Graphs.DGraph<int>.Test();
             #endregion
         }
     }

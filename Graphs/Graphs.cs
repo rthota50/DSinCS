@@ -2,6 +2,7 @@ using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System;
+using DSinCS.Utils;
 
 namespace DSinCS.Graphs
 {
@@ -10,16 +11,18 @@ namespace DSinCS.Graphs
     {
         protected abstract Dictionary<T, int> Map { get; set; }
         protected abstract Dictionary<int, List<Edge>> Adj { get; set; }
+        private Queue<int> preOrder;
+        private Queue<int> postOrder;
         private Dictionary<int, int> prev;
         private bool[] visited;
         private int[] distTo;
-        public int V ;
+        public int V{get; private set;}
         public abstract void AddEdge(T u, T w, int weight);
         public abstract void AddEdge(T u, T w);
 
         public Graph(int v)
         {
-            this.V  = v;
+            this.V = v;
         }
 
         public IEnumerable<T> bfsPathTo(T source, T end)
@@ -94,6 +97,8 @@ namespace DSinCS.Graphs
             }
         }
 
+        
+
         public IEnumerable<T> dfsPathToNon(T source, T end)
         {
             var s = new Stack<int>();
@@ -164,7 +169,7 @@ namespace DSinCS.Graphs
         public UGraph(int v) : base(v)
         {
             this.Map = new Dictionary<T, int>();
-            this.Adj = new Dictionary<int, List<Edge>>(v);            
+            this.Adj = new Dictionary<int, List<Edge>>(v);
         }
         public override void AddEdge(T u, T w, int weight)
         {
@@ -187,7 +192,7 @@ namespace DSinCS.Graphs
         {
             this.AddEdge(u, w, 1);
         }
-        
+
         public static void Test1()
         {
             UGraph<int> g = null;
@@ -221,10 +226,11 @@ namespace DSinCS.Graphs
 
     public class DGraph<T> : Graph<T>
     {
-        protected override Dictionary<T, int> Map { get ; set; }
-        protected override Dictionary<int, List<Edge>> Adj { get ; set; }
-
-        public DGraph(int v): base(v)
+        protected override Dictionary<T, int> Map { get; set; }
+        protected override Dictionary<int, List<Edge>> Adj { get; set; }
+        protected bool[] visited;
+        protected Queue<int> postOrder;
+        public DGraph(int v) : base(v)
         {
             this.Map = new Dictionary<T, int>();
             this.Adj = new Dictionary<int, List<Edge>>();
@@ -250,6 +256,55 @@ namespace DSinCS.Graphs
         {
             this.AddEdge(u, w, 1);
         }
+
+        public IEnumerable<T> TopologicalSort()
+        {
+            Adj.ToConsole();
+            Map.ToConsole();
+            postOrder = new Queue<int>();
+            visited = new bool[this.V];
+            for(int v=0; v<this.V; v++)
+            {
+                DfsOrder(v);    
+            }
+            var temp = Map.Select(kv => new { K = kv.Key, V = kv.Value }).ToDictionary(o => o.V, o => o.K);
+            return postOrder.Select(i => temp[i]);
+        }
+
+        private void DfsOrder(int v)
+        {
+            Console.WriteLine(v);
+            visited[v] = true;
+            foreach(var e in Adj[v])
+            {
+                var u = e.Other(v);
+                if(!visited[u])
+                {
+                    DfsOrder(u);
+                }
+            }
+            postOrder.Enqueue(v);
+        }
+
+        public static void Test()
+        {
+            var g = new DGraph<int>(11);
+            g.AddEdge(5,11);
+            g.AddEdge(11,2);
+            g.AddEdge(11,9);
+            g.AddEdge(11,10);
+            g.AddEdge(7,11);
+            g.AddEdge(7,8);
+            g.AddEdge(8,9);
+            g.AddEdge(3,8);
+            g.AddEdge(3,10);
+
+            var res = g.TopologicalSort().Reverse();
+            foreach(var e in res)
+            {
+                Console.WriteLine(e);
+            }
+        }
     }
 
     public struct Edge
@@ -263,5 +318,9 @@ namespace DSinCS.Graphs
         }
         public Edge(int u, int w) : this(u, w, 1) { }
         public int Other(int u) { return this.U == u ? this.W : this.U; }
+        public override string ToString()
+        {
+            return $"Edge: {this.U} => {this.W}";
+        }
     }
 }
