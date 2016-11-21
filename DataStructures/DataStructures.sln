@@ -1,0 +1,34 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.25914.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Graphs", "..\Graphs\Graphs.csproj", "{2A7655BC-6949-4C2A-919D-A0A64C66EA26}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTests", "DSTests\DSTests.csproj", "{205354DB-E5BC-408D-B02E-9F4A1D4307C5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Utils", "DS.Utils\DS.Utils.csproj", "{167743C3-8165-45D3-B6C6-3F960ADEF33A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2A7655BC-6949-4C2A-919D-A0A64C66EA26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A7655BC-6949-4C2A-919D-A0A64C66EA26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A7655BC-6949-4C2A-919D-A0A64C66EA26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A7655BC-6949-4C2A-919D-A0A64C66EA26}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205354DB-E5BC-408D-B02E-9F4A1D4307C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{205354DB-E5BC-408D-B02E-9F4A1D4307C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205354DB-E5BC-408D-B02E-9F4A1D4307C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{205354DB-E5BC-408D-B02E-9F4A1D4307C5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
