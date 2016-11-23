@@ -1,6 +1,6 @@
 ﻿namespace Graphs
 {
-    public struct Edge
+    public class Edge
     {
         private int U { get; set; }
         private int W { get; set; }

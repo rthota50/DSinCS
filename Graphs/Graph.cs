@@ -1,4 +1,5 @@
 ﻿using DS.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -156,10 +157,38 @@ namespace Graphs
 
         public List<T> ShortestPathTo(T source, T end)
         {
-            distTo = Array.CreateWithCapacity(this.V, int.MaxValue);
-            edgeTo = Array.CreateWithCapacity<Edge>(this.V);
-            return null;
-
+            distTo = DS.Utils.Array.CreateWithCapacity(this.V, int.MaxValue);
+            edgeTo = DS.Utils.Array.CreateWithCapacity<Edge>(this.V);
+            distTo[Map[source]] = 0;
+            visited = DS.Utils.Array.CreateWithCapacity<bool>(this.V);
+            var q = new Queue<int>();
+            q.Enqueue(Map[source]);
+            while(q.Count > 0)
+            {
+                var v = q.Dequeue();
+                visited[v] = true;
+                foreach(var e in Adj[v])
+                {
+                    var w = e.Other(v);
+                    if(!visited[w])
+                    {
+                        if(distTo[w]>distTo[v]+e.Weight)
+                        {
+                            distTo[w] = distTo[v] + e.Weight;
+                            edgeTo[w] = e;
+                        }
+                    }
+                }
+            }
+            var edge = edgeTo[Map[end]];
+            var vertex = Map[end];
+            var path = new List<T>();
+            while(edge != null)
+            {
+                path.Add(Map.Reverse[vertex]);
+                edge = edgeTo[edge.Other(vertex)];
+            }
+            return path;
         }
     }
 }

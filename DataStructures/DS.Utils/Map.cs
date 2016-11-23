@@ -26,7 +26,11 @@ namespace DS.Utils
             forward.Add(key, val);
             reverse.Add(val, key);
         }
-
+        public K2 this[K1 key]
+        {
+            get { return this.Forward[key]; }
+            set { Add(key, value); }
+        }
         public struct Indexer<T1, T2>
         {
             private Dictionary<T1, T2> dict;

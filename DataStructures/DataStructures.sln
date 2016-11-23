@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DSTests", "DSTests\DSTests.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DS.Utils", "DS.Utils\DS.Utils.csproj", "{167743C3-8165-45D3-B6C6-3F960ADEF33A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.csproj", "{A651F40D-76AA-417E-A3DE-E4C1F4CA9E5A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{167743C3-8165-45D3-B6C6-3F960ADEF33A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A651F40D-76AA-417E-A3DE-E4C1F4CA9E5A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A651F40D-76AA-417E-A3DE-E4C1F4CA9E5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A651F40D-76AA-417E-A3DE-E4C1F4CA9E5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A651F40D-76AA-417E-A3DE-E4C1F4CA9E5A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

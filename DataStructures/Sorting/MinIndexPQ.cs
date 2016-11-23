@@ -6,55 +6,59 @@ namespace Sorting
     {
         private T[] keys;
         private int[] pq;
-        private int[] map;
-        private int n;
+        //private int[] map;
+        private int N = 1;
         public MinIndexPQ(uint capacity)
         {
-            n = 1;
-            this.keys = Array.CreateWithCapacity<T>(capacity+1);
-            pq = Array.CreateWithCapacity<int>(capacity+1);
+            this.keys = Array.CreateWithCapacity<T>(capacity + 1);
+            pq = Array.CreateWithCapacity<int>(capacity + 1, -1);
         }
         #region API
         public void Insert(T key)
         {
-            this.keys[n] = key;
-            this.pq[n] = n;
-            Swim(n);
-            n++;
+            this.keys[N] = key;
+            this.pq[N] = N;
+            Swim(N);
+            N++;
         }
         public T DelMin()
         {
             var key = keys[pq[1]];
-            Swap(1, n--, pq);
+            keys[pq[1]] = default(T);
+            Swap(1, --N, pq);
             Sink(1);
+            pq[N] = -1;
             return key;
         }
         #endregion
-        private void Sink(int pos)
+
+        #region Infrastructure
+        public void Sink(int pos)
         {
-            while (2*pos < n)
+            while (2 * pos < N)
             {
-                var head = keys[pq[pos]];
-                var lchild = keys[pq[2 * pos]];
-                var rchild = (n == (2*pos) ? default(T) : keys[pq[2 * pos]]);
                 int m = 2 * pos;
-                int n = m + 1;
-                if(keys[pq[pos]].CompareTo(keys[pq[m]])>0)
+                if (m + 1 < N && keys[pq[m]].CompareTo(keys[pq[m + 1]]) > 0)
                 {
-                    Swap(pos, 2 * pos, pq);
-                } else if(keys[pq[pos]].CompareTo(keys[pq[n]])>0)
-                {
-
+                    m = m + 1;
                 }
-
+                if (keys[pq[m]].CompareTo(keys[pq[pos]]) < 0)
+                {
+                    Swap(m, pos, pq);
+                }
+                else
+                {
+                    break;
+                }
+                pos = m;
             }
         }
 
-        private void Swim(int pos)
+        public void Swim(int pos)
         {
-            while(pos>0 && keys[pos/2].CompareTo(keys[pos])>0)
+            while (pos > 1 && keys[pos / 2].CompareTo(keys[pos]) > 0)
             {
-                Swap(pos, pos/2, pq);
+                Swap(pos, pos / 2, pq);
                 pos /= 2;
             }
         }
@@ -65,5 +69,6 @@ namespace Sorting
             arr[p1] = arr[p2];
             arr[p2] = temp;
         }
+        #endregion
     }
 }
