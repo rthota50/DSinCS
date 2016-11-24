@@ -33,7 +33,7 @@ namespace Sorting
         #endregion
 
         #region Infrastructure
-        public void Sink(int pos)
+        private void Sink(int pos)
         {
             while (2 * pos < N)
             {
@@ -54,7 +54,7 @@ namespace Sorting
             }
         }
 
-        public void Swim(int pos)
+        private void Swim(int pos)
         {
             while (pos > 1 && keys[pos / 2].CompareTo(keys[pos]) > 0)
             {

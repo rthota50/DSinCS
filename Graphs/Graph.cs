@@ -1,5 +1,4 @@
 ﻿using DS.Utils;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -33,8 +32,8 @@ namespace Graphs
             q.Enqueue(v);
             visited[v] = true;
             var list = new List<T>();
-            prev = Array.CreateWithCapacity(this.V, -1);
-            
+            prev = DS.Utils.Array.CreateWithCapacity(this.V, -1);
+
             distTo = new int[this.V];
             distTo[v] = 0;
             while (q.Count > 0)
@@ -106,7 +105,7 @@ namespace Graphs
         {
             var s = new Stack<int>();
             visited = new bool[this.V];
-            prev = Array.CreateWithCapacity(this.V, -1);
+            prev = DS.Utils.Array.CreateWithCapacity(this.V, -1);
             s.Push(Map.Forward[source]);
             visited[Map.Forward[source]] = true;
             var adjEnums = this.Adj.ToDictionary(kv => kv.Key, kv => kv.Value.GetEnumerator());
@@ -138,15 +137,15 @@ namespace Graphs
             list.Add(source);
             return list;
         }
-     
+
         public List<IEnumerable<T>> FindCC()
         {
             var components = new List<IEnumerable<T>>();
-            prev = Array.CreateWithCapacity(this.V, -1);
-            visited = Array.CreateWithCapacity<bool>(this.V);
-            for(int i=0; i<this.V; i++)
+            prev = DS.Utils.Array.CreateWithCapacity(this.V, -1);
+            visited = DS.Utils.Array.CreateWithCapacity<bool>(this.V);
+            for (int i = 0; i < this.V; i++)
             {
-                if(!visited[i])
+                if (!visited[i])
                 {
                     var set = Dfs(i);
                     components.Add(set.AsEnumerable());
@@ -154,7 +153,12 @@ namespace Graphs
             }
             return components;
         }
-
+        /// <summary>
+        /// diakjstra algorithm
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
         public List<T> ShortestPathTo(T source, T end)
         {
             distTo = DS.Utils.Array.CreateWithCapacity(this.V, int.MaxValue);
@@ -163,16 +167,16 @@ namespace Graphs
             visited = DS.Utils.Array.CreateWithCapacity<bool>(this.V);
             var q = new Queue<int>();
             q.Enqueue(Map[source]);
-            while(q.Count > 0)
+            while (q.Count > 0)
             {
                 var v = q.Dequeue();
                 visited[v] = true;
-                foreach(var e in Adj[v])
+                foreach (var e in Adj[v])
                 {
                     var w = e.Other(v);
-                    if(!visited[w])
+                    if (!visited[w])
                     {
-                        if(distTo[w]>distTo[v]+e.Weight)
+                        if (distTo[w] > distTo[v] + e.Weight)
                         {
                             distTo[w] = distTo[v] + e.Weight;
                             edgeTo[w] = e;
@@ -183,7 +187,7 @@ namespace Graphs
             var edge = edgeTo[Map[end]];
             var vertex = Map[end];
             var path = new List<T>();
-            while(edge != null)
+            while (edge != null)
             {
                 path.Add(Map.Reverse[vertex]);
                 edge = edgeTo[edge.Other(vertex)];
