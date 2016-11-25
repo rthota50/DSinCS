@@ -137,5 +137,29 @@ namespace DSTests
             Assert.Equal("7,8", string.Join(",", res[2].Sort()));
             Assert.Equal("9,10,11,12", string.Join(",", res[1].Sort()));
         }
+
+        [Fact]
+        public void MST_via_kruskals()
+        {
+            using (var reader = File.OpenText(@"C:\rajiv\DSinCS\DataStructures\DSTests\Data\tinyEWD.txt"))
+            {
+                var V = uint.Parse(reader.ReadLine());
+                var g = new DGraph<int>(V);
+                reader.ReadLine();
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if (line == null) { continue; }
+                    var inp = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    var u = int.Parse(inp[0]);
+                    var v = int.Parse(inp[1]);
+                    var w = float.Parse(inp[2]);
+                    g.AddEdge(u, v, w);
+                }
+                var res = g.MST_Kruskal();
+                
+
+            }
+        }
     }
 }

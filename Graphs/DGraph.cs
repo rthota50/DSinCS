@@ -16,12 +16,15 @@ namespace Graphs
         private float[] distTo;
         private Edge[] edgeTo;
 
+        #region Constructor
         public DGraph(uint v) : base(v)
         {
             this.Map = new Map<T, int>();
             this.Adj = new Dictionary<int, List<Edge>>();
         }
+        #endregion
 
+        #region API
         public override void AddEdge(T u, T w, float weight)
         {
             if (!Map.Forward.ContainsKey(u))
@@ -57,20 +60,6 @@ namespace Graphs
             return postOrder.Select(i => temp[i]).Reverse();
         }
 
-        private void DfsOrder(int v)
-        {
-            Console.WriteLine(v);
-            visited[v] = true;
-            foreach (var e in Adj[v])
-            {
-                var u = e.Other(v);
-                if (!visited[u])
-                {
-                    DfsOrder(u);
-                }
-            }
-            postOrder.Enqueue(v);
-        }
 
         public bool HasCycle(T source)
         {
@@ -87,7 +76,7 @@ namespace Graphs
         /// <param name="source"></param>
         /// <param name="end"></param>
         /// <returns></returns>
-        public Dictionary<T,float> ShortestPathTree(T source)
+        public Dictionary<T, float> ShortestPathTree(T source)
         {
             distTo = DS.Utils.Array.CreateWithCapacity(this.V, float.MaxValue);
             edgeTo = DS.Utils.Array.CreateWithCapacity<Edge>(this.V);
@@ -105,7 +94,7 @@ namespace Graphs
                     {
                         distTo[w] = distTo[v] + e.Weight;
                         edgeTo[w] = e;
-                        if(pq.Contains(w)) { pq.ChangeKey(w, distTo[w]); }
+                        if (pq.Contains(w)) { pq.ChangeKey(w, distTo[w]); }
                         else { pq.InsertKey(w, distTo[w]); }
                     }
                 }
@@ -117,11 +106,44 @@ namespace Graphs
             return distToRest;
         }
 
+        public List<Edge> MST_Kruskal()
+        {
+            var totalEdges = Adj.Values.Sum(l => l.Count);
+            var pq = new MinIndexPQ<Edge>((uint)totalEdges);
+            int count = 0;
+            for (int i = 0; i < Adj.Count; i++)
+            {
+                foreach (var e in Adj[0])
+                {
+                    pq.InsertKey(count, e);
+                } 
+            }
+
+            return null;
+        }
+        #endregion
+
+        #region Private
+        private void DfsOrder(int v)
+        {
+            Console.WriteLine(v);
+            visited[v] = true;
+            foreach (var e in Adj[v])
+            {
+                var u = e.Other(v);
+                if (!visited[u])
+                {
+                    DfsOrder(u);
+                }
+            }
+            postOrder.Enqueue(v);
+        }
+
         private bool DfsCheckCycle(int v)
         {
             var cyclic = false;
             visited[v] = true;
-            foreach (var e in this.Adj[v].Where(e => prev[v] != -1? prev[v] != e.Other(v) : true))
+            foreach (var e in this.Adj[v].Where(e => prev[v] != -1 ? prev[v] != e.Other(v) : true))
             {
                 var w = e.Other(v);
                 if (visited[w]) { return true; }
@@ -131,7 +153,8 @@ namespace Graphs
                 if (cyclic) { break; }
             }
             return cyclic;
-        }
+        } 
+        #endregion
     }
 
 }

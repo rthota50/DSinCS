@@ -1,6 +1,8 @@
-﻿namespace Graphs
+﻿using System;
+
+namespace Graphs
 {
-    public class Edge
+    public class Edge : IComparable
     {
         private int U { get; set; }
         private int W { get; set; }
@@ -14,6 +16,12 @@
         public override string ToString()
         {
             return $"Edge: {this.U} => {this.W}";
+        }
+
+        public int CompareTo(Object obj)
+        {
+            var other = obj as Edge;
+            return this.Weight.CompareTo(other.Weight);
         }
     }
 }
