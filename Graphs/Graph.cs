@@ -12,10 +12,10 @@ namespace Graphs
         private Queue<int> postOrder;
         private int[] prev;
         private bool[] visited;
-        private int[] distTo;
+        private float[] distTo;
         private Edge[] edgeTo;
         public uint V { get; private set; }
-        public abstract void AddEdge(T u, T w, int weight);
+        public abstract void AddEdge(T u, T w, float weight);
         public abstract void AddEdge(T u, T w);
 
         public Graph(uint v)
@@ -34,7 +34,7 @@ namespace Graphs
             var list = new List<T>();
             prev = DS.Utils.Array.CreateWithCapacity(this.V, -1);
 
-            distTo = new int[this.V];
+            distTo = new float[this.V];
             distTo[v] = 0;
             while (q.Count > 0)
             {
@@ -72,7 +72,7 @@ namespace Graphs
             var list = new List<T>();
             prev = (new int[this.V]);
             prev.PopulateWith(-1);
-            distTo = new int[this.V];
+            distTo = new float[V];
             distTo[v] = 0;
             Dfs(v);
             if (!visited[p]) { return list; }
@@ -153,46 +153,6 @@ namespace Graphs
             }
             return components;
         }
-        /// <summary>
-        /// diakjstra algorithm
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="end"></param>
-        /// <returns></returns>
-        public List<T> ShortestPathTo(T source, T end)
-        {
-            distTo = DS.Utils.Array.CreateWithCapacity(this.V, int.MaxValue);
-            edgeTo = DS.Utils.Array.CreateWithCapacity<Edge>(this.V);
-            distTo[Map[source]] = 0;
-            visited = DS.Utils.Array.CreateWithCapacity<bool>(this.V);
-            var q = new Queue<int>();
-            q.Enqueue(Map[source]);
-            while (q.Count > 0)
-            {
-                var v = q.Dequeue();
-                visited[v] = true;
-                foreach (var e in Adj[v])
-                {
-                    var w = e.Other(v);
-                    if (!visited[w])
-                    {
-                        if (distTo[w] > distTo[v] + e.Weight)
-                        {
-                            distTo[w] = distTo[v] + e.Weight;
-                            edgeTo[w] = e;
-                        }
-                    }
-                }
-            }
-            var edge = edgeTo[Map[end]];
-            var vertex = Map[end];
-            var path = new List<T>();
-            while (edge != null)
-            {
-                path.Add(Map.Reverse[vertex]);
-                edge = edgeTo[edge.Other(vertex)];
-            }
-            return path;
-        }
+        
     }
 }

@@ -82,7 +82,33 @@ namespace DSTests
         [Fact]
         public void Find_shortest_path_in_graph()
         {
+            
+            using (var reader = File.OpenText(@"C:\rajiv\DSinCS\DataStructures\DSTests\Data\tinyEWD.txt"))
+            {
+                var V = uint.Parse(reader.ReadLine());
+                var g = new DGraph<int>(V);
+                reader.ReadLine();
+                while (!reader.EndOfStream)
+                {
+                    var line = reader.ReadLine();
+                    if(line == null) { continue; }
+                    var inp = line.Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    var u = int.Parse(inp[0]);
+                    var v = int.Parse(inp[1]);
+                    var w = float.Parse(inp[2]);
+                    g.AddEdge(u, v, w);
+                }
+                var res = g.ShortestPathTree(0);
+                Assert.Equal(res[0], 0);
+                Assert.Equal(res[1], (float)1.05);
+                Assert.Equal(res[2], (float)0.26);
+                Assert.Equal(res[3], (float)0.99);
+                Assert.Equal(res[4], (float)0.38);
+                Assert.Equal(res[5], (float)0.73);
+                Assert.Equal(res[6], (float)1.51);
+                Assert.Equal(res[7], (float)0.6);
 
+            }
         }
 
         [Fact]

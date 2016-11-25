@@ -9,17 +9,17 @@ namespace DSTests
         public void Min_index_priority_queue()
         {
             var p = new MinIndexPQ<string>(10);
-            p.Insert("a");
-            p.Insert("b");
-            p.Insert("c");
-            p.Insert("d");
-            p.Insert("e");
-            p.Insert("f");
-            Assert.Equal(p.DelMin(), "a");
-            Assert.Equal(p.DelMin(), "b");
-            Assert.Equal(p.DelMin(), "c");
-            Assert.Equal(p.DelMin(), "d");
-            Assert.Equal(p.DelMin(), "e");
+            p.InsertKey(5,"a");
+            p.InsertKey(4,"b");
+            p.InsertKey(3,"c");
+            p.InsertKey(2,"d");
+            p.InsertKey(1,"e");
+            p.InsertKey(0,"f");
+            Assert.Equal(p.DelMinKey(), "a");
+            Assert.Equal(p.DelMinKey(), "b");
+            Assert.Equal(p.DelMinKey(), "c");
+            Assert.Equal(p.DelMinKey(), "d");
+            Assert.Equal(p.DelMinKey(), "e");
         }
 
         [Fact]

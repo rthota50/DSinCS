@@ -15,7 +15,7 @@ namespace Graphs
             this.Map = new Map<T, int>();
             this.Adj = new Dictionary<int, List<Edge>>((int)v);
         }
-        public override void AddEdge(T u, T w, int weight)
+        public override void AddEdge(T u, T w, float weight)
         {
             if (!Map.Forward.ContainsKey(u))
             {

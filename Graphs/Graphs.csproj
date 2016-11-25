@@ -52,6 +52,10 @@
       <Project>{167743c3-8165-45d3-b6c6-3f960adef33a}</Project>
       <Name>DS.Utils</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DataStructures\Sorting\Sorting.csproj">
+      <Project>{a651f40d-76aa-417e-a3de-e4c1f4ca9e5a}</Project>
+      <Name>Sorting</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

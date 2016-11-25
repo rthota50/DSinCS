@@ -4,8 +4,8 @@
     {
         private int U { get; set; }
         private int W { get; set; }
-        public int Weight { get; private set; }
-        public Edge(int u, int w, int weight)
+        public float Weight { get; private set; }
+        public Edge(int u, int w, float weight)
         {
             this.U = u; this.W = w; this.Weight = weight;
         }

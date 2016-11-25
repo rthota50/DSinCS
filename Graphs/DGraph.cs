@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using System.Linq;
 using DS.Utils;
+using Sorting;
 
 namespace Graphs
 {
-    public class DGraph<T> : Graph<T>
+    public class DGraph<T> : Graph<T> where T : IComparable
     {
         protected override Map<T, int> Map { get; set; }
         protected override Dictionary<int, List<Edge>> Adj { get; set; }
         protected bool[] visited;
         protected Queue<int> postOrder;
         private int[] prev;
+        private float[] distTo;
+        private Edge[] edgeTo;
+
         public DGraph(uint v) : base(v)
         {
             this.Map = new Map<T, int>();
             this.Adj = new Dictionary<int, List<Edge>>();
         }
 
-        public override void AddEdge(T u, T w, int weight)
+        public override void AddEdge(T u, T w, float weight)
         {
             if (!Map.Forward.ContainsKey(u))
             {
@@ -75,6 +79,42 @@ namespace Graphs
             prev.PopulateWith(-1);
             var v = Map.Forward[source];
             return DfsCheckCycle(v);
+        }
+
+        /// <summary>
+        /// diakjstra algorithm
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public Dictionary<T,float> ShortestPathTree(T source)
+        {
+            distTo = DS.Utils.Array.CreateWithCapacity(this.V, float.MaxValue);
+            edgeTo = DS.Utils.Array.CreateWithCapacity<Edge>(this.V);
+            distTo[Map[source]] = 0;
+            visited = DS.Utils.Array.CreateWithCapacity<bool>(this.V);
+            var pq = new MinIndexPQ<float>(this.V);
+            pq.InsertKey(Map[source], 0);
+            while (!pq.IsEmpty())
+            {
+                var v = pq.DelMin();
+                foreach (var e in Adj[v])
+                {//relax edge
+                    var w = e.Other(v);
+                    if (distTo[w] > distTo[v] + e.Weight)
+                    {
+                        distTo[w] = distTo[v] + e.Weight;
+                        edgeTo[w] = e;
+                        if(pq.Contains(w)) { pq.ChangeKey(w, distTo[w]); }
+                        else { pq.InsertKey(w, distTo[w]); }
+                    }
+                }
+            }
+
+            var distToRest = distTo.Select((d, i) => new { K = Map.Reverse[i], V = d })
+                .ToDictionary(kv => kv.K, kv => kv.V);
+
+            return distToRest;
         }
 
         private bool DfsCheckCycle(int v)
