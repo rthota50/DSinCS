@@ -19,7 +19,7 @@ namespace Graphs
         #region Constructor
         public DGraph(uint v) : base(v)
         {
-            this.Map = new Map<T, int>();
+            this.Map = new Map<T, int>(v);
             this.Adj = new Dictionary<int, List<Edge>>();
         }
         #endregion
@@ -110,16 +110,37 @@ namespace Graphs
         {
             var totalEdges = Adj.Values.Sum(l => l.Count);
             var pq = new MinIndexPQ<Edge>((uint)totalEdges);
+            var uf = new BasicDS.DisjointSet(this.V);
             int count = 0;
+            var edgeTo = new int[this.V];
+            var distTo = new float[V];
+            var edges = new List<Edge>((int)V);
             for (int i = 0; i < Adj.Count; i++)
             {
-                foreach (var e in Adj[0])
+                foreach (var e in Adj[i])
                 {
-                    pq.InsertKey(count, e);
+                    pq.InsertKey(count++, e);
                 } 
             }
+            while(!pq.IsEmpty())
+            {
+                var e = pq.DelMinKey();
+                var u = e.Either();
+                var w = e.Other(u);
+                if(uf.Connected((uint)u, (uint)w))
+                { continue; }
 
-            return null;
+                uf.Union((uint)u, (uint)w);
+                edges.Add(e);
+            }
+            return edges.Select(e =>
+            {
+                var u = e.Either();
+                var w = e.Other(u);
+                var uActual = int.Parse(Map.Reverse[u].ToString());
+                var wActual = int.Parse(Map.Reverse[w].ToString());
+                return new Edge(uActual, wActual, e.Weight);
+            }).ToList(); ;
         }
         #endregion
 

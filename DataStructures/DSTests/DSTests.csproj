@@ -91,6 +91,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Data\tinyEWD.txt" />
+    <Content Include="Data\tinyEWG.txt" />
     <Content Include="Data\tinyG.txt" />
     <Content Include="graph1.txt" />
   </ItemGroup>

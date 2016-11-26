@@ -13,14 +13,14 @@ namespace DS.Utils
         public Indexer<K1, K2> Forward;
         public Indexer<K2, K1> Reverse;
         public int Count { get { return forward.Count; }  }
-        public Map()
+        public Map(uint capacity)
         {
-            this.forward = new Dictionary<K1, K2>();
-            this.reverse = new Dictionary<K2, K1>();
+            this.forward = new Dictionary<K1, K2>((int)capacity);
+            this.reverse = new Dictionary<K2, K1>((int)capacity);
             Forward = new Indexer<K1,K2>(this.forward);
             Reverse = new Indexer<K2,K1>(this.reverse);
         }
-
+        
         public void Add(K1 key, K2 val)
         {
             forward.Add(key, val);

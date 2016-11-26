@@ -141,7 +141,7 @@ namespace DSTests
         [Fact]
         public void MST_via_kruskals()
         {
-            using (var reader = File.OpenText(@"C:\rajiv\DSinCS\DataStructures\DSTests\Data\tinyEWD.txt"))
+            using (var reader = File.OpenText(@"C:\rajiv\DSinCS\DataStructures\DSTests\Data\tinyEWG.txt"))
             {
                 var V = uint.Parse(reader.ReadLine());
                 var g = new DGraph<int>(V);
@@ -157,7 +157,7 @@ namespace DSTests
                     g.AddEdge(u, v, w);
                 }
                 var res = g.MST_Kruskal();
-                
+                Assert.Equal(res.Count, 7);
 
             }
         }

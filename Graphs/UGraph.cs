@@ -12,7 +12,7 @@ namespace Graphs
 
         public UGraph(uint v) : base(v)
         {
-            this.Map = new Map<T, int>();
+            this.Map = new Map<T, int>(v);
             this.Adj = new Dictionary<int, List<Edge>>((int)v);
         }
         public override void AddEdge(T u, T w, float weight)

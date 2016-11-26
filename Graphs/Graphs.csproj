@@ -48,6 +48,10 @@
     <Compile Include="UGraph.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DataStructures\BasicDS\BasicDS.csproj">
+      <Project>{56891241-eb5a-4591-b79c-8c011e20937a}</Project>
+      <Name>BasicDS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DataStructures\DS.Utils\DS.Utils.csproj">
       <Project>{167743c3-8165-45d3-b6c6-3f960adef33a}</Project>
       <Name>DS.Utils</Name>
