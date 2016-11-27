@@ -198,6 +198,46 @@ namespace Sorting
             }
             return order;
         }
+
+
         #endregion
+
+        #region Diameter
+        public static uint FindHeight(Node root)
+        {
+            if (root == null) { return 0; }
+            return Math.Max(FindHeight(root.Left), FindHeight(root.Right)) + 1;
+        }
+
+        public static uint FindHeightIter(Node root)
+        {
+            if (root == null) { return 0; }
+            var q = new Queue<Node>();
+            q.Enqueue(root);
+            q.Enqueue(null);
+            uint height = 0;
+            while (q.Count > 1)
+            {
+                root = q.Dequeue();
+                if (root == null)
+                {
+                    height++;
+                    q.Enqueue(null);
+                    continue;
+                }
+                if (root.Left != null)
+                {
+                    q.Enqueue(root.Left);
+                }
+                if (root.Right != null)
+                {
+                    q.Enqueue(root.Left);
+                }
+
+            }
+            return height + 1;
+        }
+        #endregion
+
     }
 }

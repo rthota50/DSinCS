@@ -128,5 +128,20 @@ namespace DSTests
             var order = BinaryTree.ZigzagOrder(root);
             Assert.Equal("1,3,2,4,5", string.Join(",", order));
         }
+
+        [Fact]
+        public void Binary_tree_height()
+        {
+            var root = new Node(1, null);
+            root.Left = new Node(2, root);
+            root.Right = new Node(3, root);
+            root.Left.Left = new Node(4, root.Left);
+            root.Left.Right = new Node(5, root.Left);
+            Assert.Equal(root.Size, 4);
+            uint height = BinaryTree.FindHeight(root);
+            Assert.True(height == 3);
+            height = BinaryTree.FindHeightIter(root);
+            Assert.True(height == 3);
+        }
     }
 }
