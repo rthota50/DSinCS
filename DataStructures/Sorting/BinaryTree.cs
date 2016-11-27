@@ -59,7 +59,7 @@ namespace Sorting
         }
         private static void PreOrderRecursive(Node root, List<int> order)
         {
-            if(root == null) { return; }
+            if (root == null) { return; }
             order.Add(root.Key);
             PreOrderRecursive(root.Left, order);
             PreOrderRecursive(root.Right, order);
@@ -94,7 +94,7 @@ namespace Sorting
         }
         private static void PostOrderRecursive(Node root, List<int> order)
         {
-            if(root == null) { return; }
+            if (root == null) { return; }
             PostOrderRecursive(root.Left, order);
             PostOrderRecursive(root.Right, order);
             order.Add(root.Key);
@@ -106,7 +106,7 @@ namespace Sorting
             var s = new Stack<Node>();
             do
             {
-                while(root != null)
+                while (root != null)
                 {
                     if (root.Right != null)
                     { s.Push(root.Right); }
@@ -114,7 +114,7 @@ namespace Sorting
                     root = root.Left;
                 }
                 root = s.Pop();
-                if(root.Right != null && s.Count>0 && s.Peek() == root.Right )
+                if (root.Right != null && s.Count > 0 && s.Peek() == root.Right)
                 {
                     s.Pop();
                     s.Push(root);
@@ -128,7 +128,76 @@ namespace Sorting
 
             } while (s.Count != 0);
             return order;
-        } 
+        }
+        #endregion
+
+        #region Level Order Traversal
+        public static int[] LevelOrder(Node root)
+        {
+            if (root == null) { return new int[0]; }
+            var order = new int[root.Size + 1];
+            var q = new Queue<Node>();
+            int i = 0;
+            q.Enqueue(root);
+            while (q.Count != 0)
+            {
+                root = q.Dequeue();
+                order[i++] = root.Key;
+                if (root.Left != null)
+                {
+                    q.Enqueue(root.Left);
+                }
+                if (root.Right != null)
+                {
+                    q.Enqueue(root.Right);
+                }
+            }
+            return order;
+        }
+
+        #endregion
+
+        #region Zigzag Traversal
+
+        public static int[] ZigzagOrder(Node root)
+        {
+            if (root == null) { return new int[0]; }
+            var order = new int[root.Size + 1];
+            var s1 = new Stack<Node>();
+            var s2 = new Stack<Node>();
+            s1.Push(root);
+            int i = 0;
+            while (s1.Count != 0 || s2.Count != 0)
+            {
+                while (s1.Count != 0)
+                {
+                    root = s1.Pop();
+                    order[i++] = root.Key;
+                    if(root.Left != null)
+                    {
+                        s2.Push(root.Left);
+                    }
+                    if(root.Right != null)
+                    {
+                        s2.Push(root.Right);
+                    }
+                }
+                while(s2.Count != 0)
+                {
+                    root = s2.Pop();
+                    order[i++] = root.Key;
+                    if(root.Right != null)
+                    {
+                        s1.Push(root.Right);
+                    }
+                    if(root.Left != null)
+                    {
+                        s1.Push(root.Left);
+                    }
+                }
+            }
+            return order;
+        }
         #endregion
     }
 }
