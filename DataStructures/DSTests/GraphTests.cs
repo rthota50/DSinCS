@@ -1,16 +1,17 @@
-﻿using Xunit;
 using Graphs;
 using System.Linq;
 using System;
 using System.Diagnostics;
 using System.IO;
 using DS.Utils;
+using NUnit.Framework;
 
 namespace DSTests
 {
+	[TestFixture]
     public class GraphTests
     {
-        [Fact]
+        [TestCase]
         public void Run_topologocal_sort()
         {
             var g = new DGraph<int>(6);
@@ -24,10 +25,10 @@ namespace DSTests
             var res = g.TopologicalSort();
             var str = string.Join(",", res);
             Debug.WriteLine(str);
-            Assert.Equal(str, "4,5,0,2,3,1");
+            Assert.AreEqual(str, "4,5,0,2,3,1");
         }
 
-        [Fact]
+        [TestCase]
         public void Run_topological_sort_2()
         {
             var g = new DGraph<int>(8);
@@ -44,11 +45,11 @@ namespace DSTests
             var res = g.TopologicalSort();
             var str = string.Join(",", res);
             Debug.WriteLine(str);
-            Assert.Equal(str, "3,7,8,5,11,10,9,2");
+            Assert.AreEqual(str, "3,7,8,5,11,10,9,2");
 
         }
 
-        [Fact]
+        [TestCase]
         public void DGraph_has_cycle()
         {
             DGraph<int> g = null;
@@ -79,7 +80,7 @@ namespace DSTests
             }
         }
 
-        [Fact]
+        [TestCase]
         public void Find_shortest_path_in_graph()
         {
             
@@ -99,19 +100,19 @@ namespace DSTests
                     g.AddEdge(u, v, w);
                 }
                 var res = g.ShortestPathTree(0);
-                Assert.Equal(res[0], 0);
-                Assert.Equal(res[1], (float)1.05);
-                Assert.Equal(res[2], (float)0.26);
-                Assert.Equal(res[3], (float)0.99);
-                Assert.Equal(res[4], (float)0.38);
-                Assert.Equal(res[5], (float)0.73);
-                Assert.Equal(res[6], (float)1.51);
-                Assert.Equal(res[7], (float)0.6);
+                Assert.AreEqual(res[0], 0);
+                Assert.AreEqual(res[1], (float)1.05);
+                Assert.AreEqual(res[2], (float)0.26);
+                Assert.AreEqual(res[3], (float)0.99);
+                Assert.AreEqual(res[4], (float)0.38);
+                Assert.AreEqual(res[5], (float)0.73);
+                Assert.AreEqual(res[6], (float)1.51);
+                Assert.AreEqual(res[7], (float)0.6);
 
             }
         }
 
-        [Fact]
+        [TestCase]
         public void Find_connected_componenets()
         {
             UGraph<int> g;
@@ -132,13 +133,13 @@ namespace DSTests
                 }
             }
             var res = g.FindCC();
-            Assert.Equal(res.Count, 3);
-            Assert.Equal("0,1,2,3,4,5,6", string.Join(",", res[0].Sort()));
-            Assert.Equal("7,8", string.Join(",", res[2].Sort()));
-            Assert.Equal("9,10,11,12", string.Join(",", res[1].Sort()));
+            Assert.AreEqual(res.Count, 3);
+            Assert.AreEqual("0,1,2,3,4,5,6", string.Join(",", res[0].Sort()));
+            Assert.AreEqual("7,8", string.Join(",", res[2].Sort()));
+            Assert.AreEqual("9,10,11,12", string.Join(",", res[1].Sort()));
         }
 
-        [Fact]
+        [TestCase]
         public void MST_via_kruskals()
         {
             using (var reader = File.OpenText(@"C:\rajiv\DSinCS\DataStructures\DSTests\Data\tinyEWG.txt"))
@@ -157,7 +158,7 @@ namespace DSTests
                     g.AddEdge(u, v, w);
                 }
                 var res = g.MST_Kruskal();
-                Assert.Equal(res.Count, 7);
+                Assert.AreEqual(res.Count, 7);
 
             }
         }

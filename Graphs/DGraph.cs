@@ -112,7 +112,7 @@ namespace Graphs
             var pq = new MinIndexPQ<Edge>((uint)totalEdges);
             var uf = new BasicDS.DisjointSet(this.V);
             int count = 0;
-            var edgeTo = new int[this.V];
+            //var edgeTo = new int[this.V];
             var distTo = new float[V];
             var edges = new List<Edge>((int)V);
             for (int i = 0; i < Adj.Count; i++)

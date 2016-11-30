@@ -99,7 +99,8 @@ namespace Sorting
             PostOrderRecursive(root.Right, order);
             order.Add(root.Key);
         }
-        public static int[] PostOrderIterative(Node root)
+
+		public static int[] PostOrderIterative(Node root)
         {
             var order = new int[root.Size + 1];
             int i = 0;
@@ -137,7 +138,7 @@ namespace Sorting
             if (root == null) { return new int[0]; }
             var order = new int[root.Size + 1];
             var q = new Queue<Node>();
-            int i = 0;
+			int i = 0;
             q.Enqueue(root);
             while (q.Count != 0)
             {
@@ -239,5 +240,31 @@ namespace Sorting
         }
         #endregion
 
+		public static Node InvertTree(Node root)
+		{
+			if (root == null) { throw new ArgumentNullException(); }
+
+			var q = new Queue<Node>();
+			q.Enqueue(root);
+			Node node;
+			while (q.Count > 0)
+			{
+				node = q.Dequeue();
+				//queue if exists
+				if (node.Left != null)
+				{
+					q.Enqueue(node.Left);
+				}
+				if (node.Right != null)
+				{
+					q.Enqueue(node.Right);
+				}
+				//swap
+				var temp = node.Right;
+				if (node.Right != null) { node.Right = node.Left; }
+				if (temp != null) { node.Left = temp; }
+			}
+			return root;
+		}
     }
 }
