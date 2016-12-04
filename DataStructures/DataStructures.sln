@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sorting", "Sorting\Sorting.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BasicDS", "BasicDS\BasicDS.csproj", "{56891241-EB5A-4591-B79C-8C011E20937A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Arrays", "Arrays\Arrays.csproj", "{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{56891241-EB5A-4591-B79C-8C011E20937A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{56891241-EB5A-4591-B79C-8C011E20937A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{56891241-EB5A-4591-B79C-8C011E20937A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

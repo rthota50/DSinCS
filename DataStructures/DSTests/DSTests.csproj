@@ -51,6 +51,7 @@
     <Compile Include="BasicDSTests.cs" />
     <Compile Include="UtilsTests.cs" />
     <Compile Include="BinaryTreeTests.cs" />
+    <Compile Include="ArrayTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
@@ -74,6 +75,10 @@
     <ProjectReference Include="..\Sorting\Sorting.csproj">
       <Project>{a651f40d-76aa-417e-a3de-e4c1f4ca9e5a}</Project>
       <Name>Sorting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Arrays\Arrays.csproj">
+      <Project>{F4F5E899-53D7-4F59-B7D7-29690ED3F43E}</Project>
+      <Name>Arrays</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

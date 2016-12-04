@@ -88,6 +88,27 @@ public class BinaryTreeTests
 		Assert.True(height == 3);
 		height = BinaryTree.FindHeightIter(root);
 		Assert.True(height == 3);
+		root = new Node(1, null);
+		root.Left = new Node(2, root.Left);
+		root.Left.Left = new Node(3, root.Left);
+		root.Left.Left.Left = new Node(4, root.Left.Left);
+		root.Left.Left.Left.Left = new Node(5, root.Left.Left.Left);
+		var h1 = BinaryTree.FindHeight(root);
+		var h2 = BinaryTree.FindHeightIter(root);
+		Assert.AreEqual(h1, h2);
+	}
+
+	[TestCase]
+	public void Binary_tree_find_max_diameter()
+	{
+		var root = new Node(1, null);
+		root.Left = new Node(2, root);
+		root.Right = new Node(3, root);
+		root.Left.Left = new Node(4, root.Left);
+		root.Left.Right = new Node(5, root.Left);
+		Assert.AreEqual(root.Size, 4);
+		uint diameter = BinaryTree.FindMaxDiameter(root);
+		Assert.AreEqual(4, diameter);
 	}
 
 	[TestCase]
@@ -110,5 +131,46 @@ public class BinaryTreeTests
 		Assert.AreEqual(root.Right.Left.Key, 5);
 		Assert.AreEqual(root.Left.Right.Key, 6);
 
+	}
+
+	[TestCase]
+	public void BinaryTree_Invert_tree_using_recursion()
+	{
+		var root = new Node(1, null);
+		root.Left = new Node(2, root);
+		root.Right = new Node(3, root);
+		root.Left.Left = new Node(4, root.Left);
+		root.Left.Right = new Node(5, root.Left);
+		root.Right.Left = new Node(6, root.Right);
+		root.Right.Right = new Node(7, root.Left);
+
+		root = BinaryTree.InvertTreeRecurse(root);
+		Assert.AreEqual(root.Key, 1);
+		Assert.AreEqual(root.Left.Key, 3);
+		Assert.AreEqual(root.Right.Key, 2);
+		Assert.AreEqual(root.Left.Left.Key, 7);
+		Assert.AreEqual(root.Right.Right.Key, 4);
+		Assert.AreEqual(root.Right.Left.Key, 5);
+		Assert.AreEqual(root.Left.Right.Key, 6);
+
+	}
+
+	[TestCase]
+	public void Tree_is_subtree()
+	{
+		var a = new Node(10, null);
+		a.Left = new Node(4, a);
+		a.Right = new Node(6, a);
+		a.Left.Right = new Node(30, a.Left);
+		var b = new Node(26, null);
+		b.Left = new Node(10, b);
+		b.Right = new Node(3, b);
+		b.Left.Left = new Node(4, b.Left);
+		b.Left.Right = new Node(6, b.Left);
+		b.Left.Left.Right = new Node(30, b.Left.Left);
+		b.Right.Right = new Node(3, b.Right);
+
+		var res = BinaryTree.IsSubtree(b, a);
+		Assert.False(res);
 	}
 }
