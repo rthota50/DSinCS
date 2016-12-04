@@ -173,4 +173,23 @@ public class BinaryTreeTests
 		var res = BinaryTree.IsSubtree(b, a);
 		Assert.False(res);
 	}
+
+	[TestCase]
+	public void Connect_nodes_in_level_Binary_Tree()
+	{
+		var root = new RNode(1);
+		root.Left = new RNode(2);
+		root.Right = new RNode(3);
+		root.Left.Left = new RNode(4);
+		root.Left.Right = new RNode(5);
+		root.Right.Left = new RNode(6);
+		root.Right.Right = new RNode(7);
+		var res = BinaryTree.ConnectToRightLevelOrder(root);
+		Assert.IsNull(res.NextRight);
+		Assert.IsNull(res.Right.NextRight);
+		Assert.AreEqual(res.Left.NextRight.Key, 3);
+		Assert.AreEqual(res.Left.Left.NextRight.Key, 5);
+		Assert.AreEqual(res.Left.Right.NextRight.Key, 6);
+		Assert.AreEqual(res.Right.Left.NextRight.Key, 7);
+	}
 }

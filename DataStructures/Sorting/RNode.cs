@@ -13,5 +13,9 @@ namespace Sorting
 			this.Key = key;
 			this.Left = null; this.Right = null; this.NextRight = null;
 		}
+		public override string ToString()
+		{
+			return string.Format("[RNode: Key={0}, Left={1}, Right={2}, NextRight={3}]", Key, Left, Right, NextRight);
+		}
 	}
 }

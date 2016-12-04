@@ -342,8 +342,8 @@ namespace Sorting
 			while (q.Count > 1)
 			{
 				root = q.Dequeue();
+				if (root == null) { q.Enqueue(null); continue;}
 				root.NextRight = q.Peek();
-				if (root == null) { q.Enqueue(null); }
 				if (root.Left != null) { q.Enqueue(root.Left); }
 				if (root.Right != null) { q.Enqueue(root.Right); }
 			}
