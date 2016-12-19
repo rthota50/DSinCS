@@ -15,7 +15,7 @@ namespace Graphs
         public Edge(int u, int w) : this(u, w, 1) { }
         #endregion
 
-        #region API
+        #region APIs
         public int Either() => this.U;
         public int Other(int u) => this.U == u ? this.W : this.U;
         public override string ToString() => $"Edge: {this.U} => {this.W}";
